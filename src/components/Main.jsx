@@ -13,8 +13,12 @@ export default  function(){
    } 
     return(      
         <div className="main">
-            <form action={addIngredient} >            
-                <input type="text" placeholder="e.g tomato" name="ingredient" required />
+            <form action={addIngredient} >  
+                <h1><i class="ph ph-chef-hat"></i>Cook<label>It</label>Up</h1>
+                <h2>Recipe Suggestion</h2> 
+                <div>
+                <input type="text" placeholder="   Enter ingredients" name="ingredient" required />
+                </div>         
                 <button type="submit" >+ Add ingredient</button>
             </form>
             {ingredients.length>0?<section>
@@ -27,7 +31,7 @@ export default  function(){
                         <h3>Ready for your recipe?</h3>
                         <p>Generate a recipe from your list of ingredients</p>
                     </div>
-                    <button>Get a recipe</button>
+                    <button>Get a Recipe</button>
                 </div>:null}
             </section>:null}           
             
