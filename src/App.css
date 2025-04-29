@@ -1,7 +1,6 @@
 .main{
     max-width: 350px;
-    margin:0 auto;
-    margin-top: 200px;
+    margin:100px auto;
     border: 2px solid  transparent;
     border-radius: 10px;
     background-color: #FAFAF8 ;
