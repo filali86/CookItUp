@@ -1,9 +1,18 @@
 import { useState } from "react"
+import { getRecipeFromMistral } from "./ai"
+import ReactMarkdown from 'react-markdown'
 
-export default  function(){
+
+export default  function RecipeGenerator(){
      const [ingredients,setIngredients]=useState([])
 
      const ingredientsList=ingredients.map(ingredient=>(<li>{ingredient}</li>))
+    
+     const [recipe,setRecipe]=useState("")
+    async function getRecipe(){
+        const generatedRecipe = await getRecipeFromMistral(ingredients)
+        setRecipe(generatedRecipe)
+    }
 
     const addIngredient=function(formData){
         const newIngredient =formData.get("ingredient")
@@ -14,7 +23,7 @@ export default  function(){
     return(      
         <div className="main">
             <form action={addIngredient} >  
-                <h1><i class="ph ph-chef-hat"></i>Cook<label>It</label>Up</h1>
+                <h1><i className="ph ph-chef-hat"></i>Cook<label>It</label>Up</h1>
                 <h2>Recipe Suggestion</h2> 
                 <div>
                 <input type="text" placeholder="   Enter ingredients" name="ingredient" required />
@@ -31,9 +40,12 @@ export default  function(){
                         <h3>Ready for your recipe?</h3>
                         <p>Generate a recipe from your list of ingredients</p>
                     </div>
-                    <button>Get a Recipe</button>
+                    <button onClick={getRecipe}>Get a Recipe</button>
                 </div>:null}
-            </section>:null}           
+            </section>:null}    
+
+            {recipe && <ReactMarkdown>{recipe}</ReactMarkdown>}
+      
             
         </div>   
     )     
